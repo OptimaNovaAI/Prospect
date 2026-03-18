@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> | AI Transformation Strategy</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=DM+Serif+Display&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1B2A4A;
+            --accent: #7C3AED;
+            --accent-light: #A78BFA;
+            --teal: #0EA5E9;
+            --success: #10B981;
+            --warning: #F59E0B;
+            --surface: #FFFFFF;
+            --surface-alt: #F8FAFC;
+            --surface-dark: #0F172A;
+            --text: #1E293B;
+            --text-muted: #64748B;
+            --border: #E2E8F0;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'DM Sans', sans-serif; color: var(--text); background: var(--surface-alt); line-height: 1.6; }
+
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(15,23,42,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(255,255,255,0.08); padding: 0 2rem; }
+        .nav-inner { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 64px; }
+        .nav-logo { color: #fff; font-weight: 700; font-size: 1.1rem; letter-spacing: 0.5px; }
+        .nav-logo span { color: var(--accent-light); }
+        .nav-links a { color: rgba(255,255,255,0.7); text-decoration: none; margin-left: 2rem; font-size: 0.85rem; font-weight: 500; }
+        .nav-links a:hover { color: #fff; }
+
+        .hero { background: linear-gradient(135deg, #0F172A 0%, #1E293B 40%, #1B2A4A 100%); padding: 8rem 2rem 4rem; text-align: center; position: relative; overflow: hidden; }
+        .hero::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: radial-gradient(ellipse at 30% 50%, rgba(124,58,237,0.15) 0%, transparent 60%), radial-gradient(ellipse at 70% 50%, rgba(14,165,233,0.1) 0%, transparent 60%); }
+        .hero-content { position: relative; max-width: 800px; margin: 0 auto; }
+        .hero-badge { display: inline-block; background: rgba(124,58,237,0.2); border: 1px solid rgba(124,58,237,0.3); border-radius: 20px; padding: 0.35rem 1rem; color: var(--accent-light); font-size: 0.8rem; font-weight: 600; letter-spacing: 1px; margin-bottom: 1.5rem; }
+        .hero h1 { font-family: 'DM Serif Display', serif; color: #fff; font-size: 2.8rem; line-height: 1.2; margin-bottom: 1rem; }
+        .hero h1 span { background: linear-gradient(135deg, var(--accent-light), var(--teal)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .hero-subtitle { color: rgba(255,255,255,0.7); font-size: 1.1rem; line-height: 1.7; max-width: 600px; margin: 0 auto 2.5rem; }
+        .hero-meta { display: flex; justify-content: center; gap: 3rem; flex-wrap: wrap; }
+        .hero-meta-item { text-align: center; }
+        .hero-meta-label { color: rgba(255,255,255,0.4); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.25rem; }
+        .hero-meta-value { color: #fff; font-weight: 600; font-size: 0.95rem; }
+
+        .section { padding: 5rem 2rem; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 3rem; }
+        .section-label { color: var(--accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .section-title { font-family: 'DM Serif Display', serif; font-size: 2rem; color: var(--primary); margin-bottom: 0.75rem; }
+        .section-subtitle { color: var(--text-muted); font-size: 1rem; max-width: 600px; margin: 0 auto; }
+
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.5rem; margin-bottom: 3rem; }
+        .stat-card { background: #fff; border-radius: 12px; padding: 2rem; text-align: center; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .stat-card.accent { background: linear-gradient(135deg, var(--accent) 0%, var(--teal) 100%); border: none; }
+        .stat-card.accent .stat-number, .stat-card.accent .stat-label { color: #fff; }
+        .stat-number { font-family: 'DM Serif Display', serif; font-size: 2.5rem; color: var(--primary); margin-bottom: 0.25rem; }
+        .stat-label { color: var(--text-muted); font-size: 0.85rem; font-weight: 500; }
+
+        .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card { background: #fff; border-radius: 12px; padding: 2rem; border: 1px solid var(--border); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+        .card-number { display: inline-flex; align-items: center; justify-content: center; width: 36px; height: 36px; background: linear-gradient(135deg, var(--accent), var(--teal)); color: #fff; border-radius: 10px; font-weight: 700; font-size: 0.9rem; margin-bottom: 1rem; }
+        .card h3 { font-size: 1.15rem; color: var(--primary); margin-bottom: 0.75rem; }
+        .card p { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
+        .card ul { list-style: none; margin-top: 0.75rem; }
+        .card ul li { padding: 0.4rem 0; padding-left: 1.25rem; position: relative; color: var(--text-muted); font-size: 0.85rem; }
+        .card ul li::before { content: ''; position: absolute; left: 0; top: 0.7rem; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+        .section-dark { background: linear-gradient(135deg, #0F172A, #1B2A4A); color: #fff; }
+        .section-dark .section-label { color: var(--accent-light); }
+        .section-dark .section-title { color: #fff; }
+        .section-dark .section-subtitle { color: rgba(255,255,255,0.6); }
+
+        .timeline { position: relative; padding-left: 3rem; }
+        .timeline::before { content: ''; position: absolute; left: 14px; top: 0; bottom: 0; width: 2px; background: linear-gradient(to bottom, var(--accent), var(--teal)); }
+        .timeline-item { position: relative; margin-bottom: 2.5rem; }
+        .timeline-dot { position: absolute; left: -3rem; top: 0.25rem; width: 30px; height: 30px; border-radius: 50%; background: linear-gradient(135deg, var(--accent), var(--teal)); display: flex; align-items: center; justify-content: center; }
+        .timeline-dot::after { content: ''; width: 10px; height: 10px; background: #fff; border-radius: 50%; }
+        .timeline-phase { color: var(--accent); font-size: 0.75rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.25rem; }
+        .timeline-title { font-size: 1.1rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .timeline-desc { color: var(--text-muted); font-size: 0.9rem; }
+
+        .cta-section { background: linear-gradient(135deg, #0F172A, #1B2A4A); padding: 5rem 2rem; text-align: center; }
+        .cta-section h2 { font-family: 'DM Serif Display', serif; color: #fff; font-size: 2.2rem; margin-bottom: 1rem; }
+        .cta-section p { color: rgba(255,255,255,0.7); font-size: 1.05rem; max-width: 500px; margin: 0 auto 2rem; }
+        .cta-btn { display: inline-block; background: linear-gradient(135deg, var(--accent), var(--teal)); color: #fff; text-decoration: none; padding: 1rem 2.5rem; border-radius: 8px; font-weight: 700; font-size: 1rem; letter-spacing: 0.5px; transition: transform 0.2s, box-shadow 0.2s; }
+        .cta-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 25px rgba(124,58,237,0.3); }
+
+        .footer { background: var(--surface-dark); padding: 2rem; text-align: center; }
+        .footer p { color: rgba(255,255,255,0.4); font-size: 0.8rem; }
+        .footer a { color: var(--accent-light); text-decoration: none; }
+
+        .risk-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin-top: 2rem; }
+        .risk-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 12px; padding: 1.5rem; }
+        .risk-label { font-size: 0.7rem; color: var(--warning); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 0.5rem; }
+        .risk-title { font-size: 1rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .risk-mitigation { font-size: 0.85rem; color: rgba(255,255,255,0.6); }
+        .risk-mitigation strong { color: var(--success); }
+
+        .fade-in { opacity: 0; transform: translateY(20px); transition: opacity 0.6s, transform 0.6s; }
+        .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            .hero-meta { gap: 1.5rem; }
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-inner">
+            <div class="nav-logo">Optima<span>Nova</span> AI</div>
+            <div class="nav-links">
+                <a href="#strategy">Strategy</a>
+                <a href="#opportunities">Opportunities</a>
+                <a href="#landscape">Landscape</a>
+                <a href="#roadmap">Roadmap</a>
+                <a href="#cta">Next Steps</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-badge">AI TRANSFORMATION STRATEGY</div>
+            <h1> <span>AI Strategy</span></h1>
+            <p class="hero-subtitle">A tailored AI transformation strategy for , designed to accelerate growth and operational excellence in the Professional Services industry.</p>
+            <div class="hero-meta">
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Prepared For</div>
+                    <div class="hero-meta-value">Executive Team</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Prepared By</div>
+                    <div class="hero-meta-value">OptimaNova AI</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">Date</div>
+                    <div class="hero-meta-value">March 2026</div>
+                </div>
+                <div class="hero-meta-item">
+                    <div class="hero-meta-label">AI Readiness</div>
+                    <div class="hero-meta-value">Exploring</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="strategy">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <div class="section-label">Strategic Imperative</div>
+                <div class="section-title">Why  Needs AI Now</div>
+                <div class="section-subtitle">Professional services firms that master AI-driven efficiency and strategic automation will capture market share while competitors struggle with manual processes and resource constraints.</div>
+            </div>
+            <div class="stats-grid fade-in">
+                <div class="stat-card">
+                    <div class="stat-number">43% faster</div>
+                    <div class="stat-label">Project Delivery Speed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">67% reduction</div>
+                    <div class="stat-label">Client Response Time</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">71% improved</div>
+                    <div class="stat-label">Resource Utilization</div>
+                </div>
+                <div class="stat-card accent">
+                    <div class="stat-number">52% of workflows</div>
+                    <div class="stat-label">Process Automation Rate</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" style="background:#fff;" id="opportunities">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <div class="section-label">AI Opportunities</div>
+                <div class="section-title">Tailored Opportunities for </div>
+                <div class="section-subtitle">Based on your current challenges and goals, we've identified these high-impact areas.</div>
+            </div>
+            <div class="cards-grid fade-in">
+                <div class="card">
+                    <div class="card-number">1</div>
+                    <h3>Client Delivery Automation</h3>
+                    <p>Transform your service delivery with AI that handles routine client work, generates first-draft deliverables, and accelerates project timelines. This allows your team to focus on high-value strategic consulting while maintaining quality standards.</p>
+                    <ul>
+                        <li>Document generation using GPT-4 for proposals and reports</li>
+                        <li>Client communication automation via ChatGPT API integration</li>
+                        <li>Project template creation with Claude for consistent deliverables</li>
+                        <li>Research synthesis using Perplexity for market analysis</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-number">2</div>
+                    <h3>Business Development Intelligence</h3>
+                    <p>Deploy AI to identify high-probability prospects, personalize outreach at scale, and track engagement patterns. This systematic approach to BD dramatically improves conversion rates while reducing manual prospecting time.</p>
+                    <ul>
+                        <li>Lead scoring models using Salesforce Einstein</li>
+                        <li>Proposal win probability analysis with predictive analytics</li>
+                        <li>LinkedIn outreach personalization via Sales Navigator AI</li>
+                        <li>RFP response optimization using natural language processing</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-number">3</div>
+                    <h3>Knowledge Management Revolution</h3>
+                    <p>Create an AI-powered knowledge base that instantly surfaces relevant case studies, methodologies, and expertise from across your firm. This eliminates knowledge silos and accelerates junior staff development.</p>
+                    <ul>
+                        <li>Internal ChatGPT instance trained on firm methodologies</li>
+                        <li>Semantic search across all project documents using Pinecone</li>
+                        <li>Expertise location system with employee skill mapping</li>
+                        <li>Automated case study generation from completed projects</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <div class="card-number">4</div>
+                    <h3>Financial Operations Optimization</h3>
+                    <p>Implement AI for accurate project profitability forecasting, dynamic resource allocation, and automated time tracking. This provides real-time visibility into margins and enables proactive project management adjustments.</p>
+                    <ul>
+                        <li>Project profitability prediction using historical data models</li>
+                        <li>Resource allocation optimization with linear programming</li>
+                        <li>Automated timesheet categorization via natural language processing</li>
+                        <li>Invoice processing automation with OCR and validation rules</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section section-dark" id="landscape">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <div class="section-label">Competitive Landscape</div>
+                <div class="section-title">Where You Stand vs. AI-Enabled Competitors</div>
+                <div class="section-subtitle">Benchmarking  against AI-adopting peers in Professional Services.</div>
+            </div>
+            <div class="risk-grid fade-in">
+                <div class="risk-card">
+                    <div class="risk-label">Risk 01</div>
+                    <div class="risk-title">Client Confidentiality Breach</div>
+                    <div class="risk-mitigation"><strong>Mitigation:</strong> Implement private AI instances, data encryption protocols, and strict access controls with regular security audits</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-label">Risk 02</div>
+                    <div class="risk-title">Quality Control Failures</div>
+                    <div class="risk-mitigation"><strong>Mitigation:</strong> Establish human review workflows, output validation checklists, and gradual rollout with performance monitoring</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-label">Risk 03</div>
+                    <div class="risk-title">Staff Resistance and Skills Gap</div>
+                    <div class="risk-mitigation"><strong>Mitigation:</strong> Launch comprehensive training program, identify AI champions, and demonstrate quick wins to build confidence</div>
+                </div>
+                <div class="risk-card">
+                    <div class="risk-label">Risk 04</div>
+                    <div class="risk-title">Over-Dependence on AI Tools</div>
+                    <div class="risk-mitigation"><strong>Mitigation:</strong> Maintain human oversight requirements, backup processes, and regular model performance evaluations</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="roadmap">
+        <div class="section-inner">
+            <div class="section-header fade-in">
+                <div class="section-label">Implementation Roadmap</div>
+                <div class="section-title">Your Path to AI Transformation</div>
+                <div class="section-subtitle">A phased approach designed to deliver quick wins while building toward sustained impact.</div>
+            </div>
+            <div class="timeline fade-in">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-phase">Phase 1 — Weeks 1-2</div>
+                    <div class="timeline-title">Foundation and Quick Wins</div>
+                    <div class="timeline-desc">Conduct AI readiness assessment, identify pilot use cases, and implement ChatGPT Plus across teams with basic prompt engineering training for immediate productivity gains.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-phase">Phase 2 — Weeks 3-4</div>
+                    <div class="timeline-title">Pilot Implementation</div>
+                    <div class="timeline-desc">Launch document automation pilot, set up knowledge base prototype, and begin training custom models on firm-specific content while measuring impact metrics.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-phase">Phase 3 — Weeks 5-8</div>
+                    <div class="timeline-title">Integration and Scaling</div>
+                    <div class="timeline-desc">Integrate AI tools with existing systems, expand successful pilots to additional teams, and develop governance frameworks for broader deployment.</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-phase">Phase 4 — Weeks 9-12</div>
+                    <div class="timeline-title">Advanced Capabilities</div>
+                    <div class="timeline-desc">Deploy predictive analytics for business forecasting, implement advanced automation workflows, and establish center of excellence for ongoing AI innovation.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section" id="cta">
+        <h2>Start Your Professional Services AI Transformation Today</h2>
+        <p>Your competitors are already exploring AI solutions that will reshape client expectations and service delivery standards within the next 12 months.</p>
+        <a href="https://calendar.app.google/DUWiUQ84wLeXSD1B9" target="_blank" class="cta-btn">Schedule a Strategy Session</a>
+    </section>
+
+    <footer class="footer">
+        <p>&copy; 2026 <a href="https://optimanova.ai">OptimaNova AI</a> &bull; Empowering organizations through intelligent AI adoption.</p>
+    </footer>
+
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
